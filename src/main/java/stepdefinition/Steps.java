@@ -95,9 +95,9 @@ public class Steps {
 		String order = m.group(0).split("Do not forget to include your order reference ")[1].trim();
 		System.out.println(order);
 		driver.findElementByXPath("//a[text()='Back to orders']").click();
-		Thread.sleep(1000);
+		/*Thread.sleep(1000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("return window.stop");
+		js.executeScript("return window.stop");*/
 		String orderTable = driver.findElementByXPath("//table[@id='order-list']//tbody/tr[1]/td/a").getText().trim();
 		if(order.equalsIgnoreCase(orderTable))
 			System.out.println("Order is present in order history - Pass");
