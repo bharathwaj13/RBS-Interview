@@ -37,9 +37,9 @@ public class Steps {
 		driver.findElementByXPath("//input[@id='passwd']").sendKeys("Password123");
 		driver.findElementByXPath("//button[@id='SubmitLogin']").click();
 		if(driver.findElementByXPath("//a[@class='logout']").isDisplayed())
-			System.out.println("Logout is successful - Pass");
+			System.out.println("Login is successful - Pass");
 		else
-			System.out.println("Logout is unsuccessful - Fail");
+			System.out.println("Login is unsuccessful - Fail");
 	}
 
 	@And("Select the Tshirt by adding to Cart")
