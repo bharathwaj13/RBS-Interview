@@ -21,8 +21,8 @@ public class Steps {
 
 	public static ChromeDriver driver;
 
-	@Given("Launch the application and login using the URL as (.*)")
-	public void login(String data) {
+	@Given("Launch the application using the URL as (.*)")
+	public void launch(String data) {
 		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 		driver=new ChromeDriver();
 		driver.get(data);
@@ -32,16 +32,21 @@ public class Steps {
 			System.out.println("Login page displays - Pass");
 		else
 			System.out.println("Login page does not display - Fail");
+		
+	}
+
+	@Given("Login using username as (.*) and Password as (.*)")
+	public void login(String username,String password) {
 		driver.findElementByXPath("//a[@class='login']").click();
-		driver.findElementByXPath("//input[@id='email']").sendKeys("someone@example.com");
-		driver.findElementByXPath("//input[@id='passwd']").sendKeys("Password123");
+		driver.findElementByXPath("//input[@id='email']").sendKeys(username);
+		driver.findElementByXPath("//input[@id='passwd']").sendKeys(password);
 		driver.findElementByXPath("//button[@id='SubmitLogin']").click();
 		if(driver.findElementByXPath("//a[@class='logout']").isDisplayed())
 			System.out.println("Login is successful - Pass");
 		else
 			System.out.println("Login is unsuccessful - Fail");
+		
 	}
-
 	@And("Select the Tshirt by adding to Cart")
 	public void selectTShirt() {
 		String strSectionHeader;
@@ -124,11 +129,11 @@ public class Steps {
 			System.out.println("Personal Information page is not displayed - Fail");
 	}
 
-	@When("Update FirstName as (.*)")
-	public void updateFirstName(String data) {
+	@When("Update FirstName as (.*) using Password as (.*)")
+	public void updateFirstName(String data,String pwd) {
 		driver.findElementByXPath("//input[@id='firstname']").clear();
 		driver.findElementByXPath("//input[@id='firstname']").sendKeys(data);
-		driver.findElementByXPath("//input[@id='old_passwd']").sendKeys("Password123");
+		driver.findElementByXPath("//input[@id='old_passwd']").sendKeys(pwd);
 		driver.findElementByXPath("//button[@name='submitIdentity']").click();
 	}
 
